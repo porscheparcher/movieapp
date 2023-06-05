@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies App!</title>
+</head>
+<body>
+    <div id="movieForm">
+        Title:
+        <input class="form-title" placeholder="input movie title here">
+        Rating:
+        <input class="form-rating" placeholder="input rating 0 - 10">
+        <input type="button" class="btn" value="Submit">
+        <br>
+        <br>
+        <br>
+        <!--<input type="button" class="btnRemove" value="Remove">-->
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.btn').on('click', () => {
+                let title = 'Title:' + ' ' + $('.form-title').val();
+                let rating = ' ' + 'Rating:' + ' ' + $('.form-rating').val();
+                let titleElement = $('<div>').text(title);
+                let ratingElement = $('<div>').text(rating);
+                let removeButton = $('<button>').text('Remove');
+                let ratingInput = $('.form-rating').val();
+                let titleInput = $('.form-title').val();
+                if (ratingInput < 0 || ratingInput > 10) {
+                    alert('Your rating must be between 0 and 10');
+                    return;
+                } else if (titleInput.length < 2) {
+                    alert('Your title must have more than 2 characters');
+                    return;
+                } else {
+                    titleElement.append(removeButton);
+                ratingElement.append(removeButton.clone());
+                
+                $('body').append(titleElement, ratingElement, '<br>');
+                
+                removeButton.on('click', function() {
+                    $(this).parent().remove();
+                
+               
+            });
+
+                }
+                
+
+        });
+    });
+    </script>
+</body>
+</html>
